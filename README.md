@@ -93,3 +93,21 @@ crons = ["0 0 * * *"]  # 0:00 UTC = 9:00 JST
 | `SLACK_WEBHOOK_URL` | Slack Incoming Webhook URL | 必須 |
 | `MONITORED_DEVICE_IDS` | 監視対象のデバイス ID（カンマ区切り） | 必須 |
 | `BATTERY_THRESHOLD` | 通知する残量の閾値 (%) | `20` |
+
+## known issues
+
+### [Gettin battery status of keypads · Issue #418 · OpenWonderLabs/SwitchBotAPI](https://github.com/OpenWonderLabs/SwitchBotAPI/issues/418)
+
+Keypad のバッテリー状態をAPIで取得できないのは既知の問題で、`Home Assistant` つまり `N/A` になるのは API の仕様上のバグっぽいです。
+
+```console
+ wrangler tail
+
+ ⛅️ wrangler 4.80.0
+───────────────────
+Successfully created tail, expires at 2026-04-05T08:13:46Z
+Connected to <your-worker>, waiting for logs...
+GET https://<your-worker>.workers.dev/trigger - Ok @ 4/5/2026, 2:08:59 PM
+  (log) ロックUltra 5B: battery=94
+  (log) 顔認証パッド 89: battery=N/A
+```
