@@ -1,0 +1,14 @@
+name = "switchbot-battery-monitor"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+[triggers]
+crons = ["0 0 * * *"]  # 毎日 9:00 JST (0:00 UTC)
+
+# 環境変数は wrangler secret で設定すること
+# wrangler secret put SWITCHBOT_TOKEN
+# wrangler secret put SWITCHBOT_SECRET
+# wrangler secret put SLACK_WEBHOOK_URL
+# wrangler secret put MONITORED_DEVICE_IDS
+# wrangler secret put BATTERY_THRESHOLD   ← 省略時は 20% がデフォルト
